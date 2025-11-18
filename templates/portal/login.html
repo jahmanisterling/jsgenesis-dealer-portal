@@ -1,0 +1,22 @@
+{% extends "portal/base.html" %}
+{% block content %}
+
+<h2 class="mb-4">Login</h2>
+
+{% if error %}
+<div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+
+    <label class="form-label">Username</label>
+    <input type="text" name="username" class="form-control" required>
+
+    <label class="form-label mt-3">Password</label>
+    <input type="password" name="password" class="form-control" required>
+
+    <button class="btn btn-primary mt-4">Login</button>
+</form>
+
+{% endblock %}

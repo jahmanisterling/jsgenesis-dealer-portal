@@ -1,0 +1,33 @@
+{% extends "portal/base.html" %}
+{% block content %}
+
+<h2 class="mb-4">Dealers</h2>
+
+<!-- Filter by state -->
+<form method="get" action="/filter/" class="mb-4">
+    <div class="input-group">
+        <input type="text" name="state" class="form-control" placeholder="Enter state (e.g., Kansas)">
+        <button class="btn btn-primary" type="submit">Filter</button>
+    </div>
+</form>
+
+<div class="row">
+    {% for d in dealers %}
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5>{{ d.name }}</h5>
+                <p>{{ d.city }}, {{ d.state }}</p>
+
+                <a href="/dealer/{{ d.id }}/" class="btn btn-outline-primary btn-sm">View</a>
+
+                {% if user.is_authenticated %}
+                <a href="/dealer/{{ d.id }}/review/" class="btn btn-primary btn-sm">Post Review</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

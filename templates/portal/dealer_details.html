@@ -1,0 +1,29 @@
+{% extends "portal/base.html" %}
+{% block content %}
+
+<h2 class="mb-3">Dealer Details</h2>
+
+<a href="/" class="btn btn-secondary btn-sm mb-4">← Back</a>
+
+<h4>Reviews</h4>
+<hr>
+
+{% if reviews %}
+    {% for r in reviews %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h6>{{ r.reviewer }} — ⭐ {{ r.rating }}</h6>
+            <p>{{ r.review }}</p>
+            <span class="badge bg-info text-dark">{{ r.sentiment }}</span>
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+    <p>No reviews yet.</p>
+{% endif %}
+
+{% if user.is_authenticated %}
+    <a href="/dealer/{{ dealer_id }}/review/" class="btn btn-primary mt-3">Add Review</a>
+{% endif %}
+
+{% endblock %}

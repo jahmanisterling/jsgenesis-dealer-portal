@@ -1,0 +1,25 @@
+{% extends "portal/base.html" %}
+{% block content %}
+
+<h2 class="mb-4">Sign Up</h2>
+
+{% if error %}
+<div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+
+    <label class="form-label">Username</label>
+    <input type="text" name="username" class="form-control" required>
+
+    <label class="form-label mt-3">Password</label>
+    <input type="password" name="password1" class="form-control" required>
+
+    <label class="form-label mt-3">Confirm Password</label>
+    <input type="password" name="password2" class="form-control" required>
+
+    <button class="btn btn-success mt-4">Create Account</button>
+</form>
+
+{% endblock %}
